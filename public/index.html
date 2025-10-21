@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Web App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Docker Web App</h1>
+            <p>Successfully deployed with automated DevOps script!</p>
+        </header>
+
+        <div class="status-card">
+            <h2>📊 Application Status</h2>
+            <div id="status" class="status-loading">Checking status...</div>
+        </div>
+
+        <div class="info-cards">
+            <div class="card">
+                <h3>🔧 System Information</h3>
+                <div id="system-info">Loading...</div>
+            </div>
+            
+            <div class="card">
+                <h3>👋 Greet API</h3>
+                <input type="text" id="nameInput" placeholder="Enter your name">
+                <button onclick="greet()">Say Hello</button>
+                <div id="greet-result"></div>
+            </div>
+        </div>
+
+        <div class="deployment-info">
+            <h3>📦 Deployment Details</h3>
+            <ul>
+                <li><strong>Containerized:</strong> Docker</li>
+                <li><strong>Web Server:</strong> Node.js + Express</li>
+                <li><strong>Reverse Proxy:</strong> Nginx</li>
+                <li><strong>Automation:</strong> Bash Script</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Built for DevOps Internship Stage 1 Task</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
