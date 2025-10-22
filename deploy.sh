@@ -330,25 +330,23 @@ configure_nginx() {
     local nginx_enabled="/etc/nginx/sites-enabled/$PROJECT_NAME"
     
     execute_remote "
-        # Create nginx config
-        sudo tee $nginx_config > /dev/null <<EOF
+sudo tee $nginx_config > /dev/null <<'NGINX_CONF'
 server {
     listen 80;
     server_name $SERVER_IP;
-    
+
     location / {
         proxy_pass http://127.0.0.1:$APP_PORT;
-        proxy_set_header Host \\$host;
-        proxy_set_header X-Real-IP \\$remote_addr;
-        proxy_set_header X-Forwarded-For \\$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \\$scheme;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 }
-EOF
-        # Enable site
-        sudo ln -sf $nginx_config $nginx_enabled && \
-        sudo nginx -t && \
-        sudo systemctl reload nginx
+NGINX_CONF
+sudo ln -sf $nginx_config $nginx_enabled
+sudo nginx -t
+sudo systemctl reload nginx
     " "Configuring Nginx reverse proxy"
     
     log_success "Nginx configuration completed"
